@@ -1,0 +1,34 @@
+{
+  "levels": {
+    "info": "debug",
+    "mq": "info"
+  },
+  "appenders": [
+    {
+      "type": "console"
+    },
+    {
+      "category": "info",
+      "type": "dateFile",
+      "filename": "logs/ker-info",
+      "alwaysIncludePattern": true,
+      "pattern": "-yyyy-MM-dd.log",
+      "layout": {
+        "type": "pattern",
+        "pattern": "[%d] [%p] - %m"
+      }
+    },
+    {
+      "category": "mq",
+      "type": "dateFile",
+      "filename": "logs/ker-mq",
+      "alwaysIncludePattern": true,
+      "pattern": "-yyyy-MM-dd.log",
+      "layout": {
+        "type": "pattern",
+        "pattern": "[%d] [%p] - %m"
+      }
+    }
+  ],
+  "replaceConsole": true
+}
