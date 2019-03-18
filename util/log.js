@@ -1,10 +1,10 @@
 const log4js = require('log4js');
 log4js.configure({
   appenders: {
-    qi: { type: 'file', filename: '../logs/access' },
+    qi: { type: 'console', filename: 'logs/access' },
     error: { 
       type: 'file', 
-      filename: '../log/error' , 
+      filename: 'logs/error' , 
       alwaysIncludePattern: true, 
       pattern: "-yyyy-MM-dd.log", 
       layout: {
@@ -14,7 +14,7 @@ log4js.configure({
     },
     access: { 
       type: 'file', 
-      filename: '../logs/access',
+      filename: 'logs/access',
       alwaysIncludePattern: true,
       pattern: '-yyyy-MM-dd.log',
       layout: {
