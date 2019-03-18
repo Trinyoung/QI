@@ -1,7 +1,7 @@
 const log4js = require('log4js');
 log4js.configure({
   appenders: {
-    cheese: { type: 'console' },
+    qi: { type: 'file', filename: '../logs/access' },
     error: { 
       type: 'file', 
       filename: '../log/error' , 
@@ -14,7 +14,7 @@ log4js.configure({
     },
     access: { 
       type: 'file', 
-      filename: '../log/access',
+      filename: '../logs/access',
       alwaysIncludePattern: true,
       pattern: '-yyyy-MM-dd.log',
       layout: {
@@ -24,16 +24,17 @@ log4js.configure({
    },
   },
   categories: {
-    default: { appenders: ['cheese'], level: 'all' },
+    default: { appenders: ['access', 'qi'], level: 'debug' },
     err: { appenders: ['error'], level: 'error' },
-    access: { appenders: ['access'], level: 'info' }
+    access: { appenders: ['access'], level: 'debug' }
   }
 });
-const qi = log4js.getLogger('');
-const errLog = log4js.getLogger('err');
-const access = log4js.getLogger('access');
-errLog.error('Got error');
-access.info('Got QI');
 
-
-// module.exports = logger;
+// const errorLog = log4js.getLogger('err');
+// const logger = log4js.getLogger('access');
+// logger.info('asfadsfasdfasdfsadfads');
+// errorLog.error('asdfasdfasdfasd');
+module.exports = {
+  errLog: log4js.getLogger('err'),
+  logger: log4js.getLogger()
+};

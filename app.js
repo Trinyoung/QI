@@ -1,6 +1,6 @@
 const dgram = require('dgram');
 const server = dgram.createSocket('udp4');
-const logger = require('./util/log');
+const {errLog, logger} = require('./util/log');
 const config = require('./config');
 const controller = require('./controller');
 
@@ -14,18 +14,19 @@ server.on('message', async function (msg, rinfo) {
 });
 
 server.on('error', function (error){
-  logger.error(`server connecting or message listening error: ${error}`)
+  errLog.error(`server connecting or message listening error: ${error}`)
 });
 
 server.on('listening', function () {
   var address = server.address();
-  logger.info(`server listening ${address.address}:${address.port}`)
+  errLog.error('afdasd')
+  logger.debug(`server listening ${address.address}:${address.port}`)
 });
 
 server.bind(config.port);
 
 process.on('uncaughtException', function(err){
-  logger.error(`uncaughtException :${err}`);
+  errLog.error(`uncaughtException :${err}`);
 });
 
 jsonRpc.Server();
