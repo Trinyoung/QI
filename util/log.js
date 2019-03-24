@@ -24,8 +24,8 @@ log4js.configure({
    },
   },
   categories: {
-    default: { appenders: ['access', 'qi', 'error'], level: 'debug' },
-    err: { appenders: ['error'], level: 'error' },
+    default: { appenders: ['access', 'qi'], level: 'debug' },
+    err: { appenders: ['error', 'qi'], level: 'error' },
     access: { appenders: ['access'], level: 'debug' }
   }
 });
