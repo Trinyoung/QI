@@ -24,16 +24,11 @@ log4js.configure({
    },
   },
   categories: {
-    default: { appenders: ['access', 'qi'], level: 'debug' },
+    default: { appenders: ['access', 'qi', 'error'], level: 'debug' },
     err: { appenders: ['error'], level: 'error' },
     access: { appenders: ['access'], level: 'debug' }
   }
 });
-
-// const errorLog = log4js.getLogger('err');
-// const logger = log4js.getLogger('access');
-// logger.info('asfadsfasdfasdfsadfads');
-// errorLog.error('asdfasdfasdfasd');
 module.exports = {
   errLog: log4js.getLogger('err'),
   logger: log4js.getLogger()
