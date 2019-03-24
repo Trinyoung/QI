@@ -2,6 +2,7 @@ const db = require('../db');
 const Schema = db.Schema;
 
 const QiSchema = new Schema({
+  node_id: String,
   access_type: String,
   ip_type: String,
   power_status: String,
