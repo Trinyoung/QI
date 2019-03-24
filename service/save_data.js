@@ -12,7 +12,6 @@ class Save {
         });
         const qi = new model(data);
         if (!data.node_id) {
-            console.log ('here is data.node_id');
             errLog.error('cannot find node_id');
             return;
         }
