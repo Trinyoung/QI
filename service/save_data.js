@@ -10,6 +10,7 @@ class Save {
             created_at: now.getTime() / 1000,
             updated_at: now.getTime() / 1000,
         });
+	console.log(data.node_id);
         const qi = new model(data);
         if (!data.node_id) {
             errLog.error('cannot find node_id');
