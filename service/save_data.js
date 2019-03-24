@@ -9,7 +9,7 @@ class Save {
         data = Object.assign({
             created_at: now.getTime() / 1000,
             updated_at: now.getTime() / 1000,
-        });
+        },data);
         const qi = new model(data);
         if (!data.node_id) {
             errLog.error('cannot find node_id');
