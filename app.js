@@ -6,19 +6,20 @@ const controller = require('./controller');
 
 const jsonRpc = require('node-json-rpc');
 server.on('message', async function (msg, rinfo) {
+  logger.info(msg);
   const json = msg.toString();
   logger.debug(`server got: ${msg} from ${rinfo.address}: ${rinfo.port}`);
-  const newMsg = JSON.parse(json);
+  // const newMsg = JSON.parse(json);
   await controller(newMsg);
 });
 
 server.on('error', function (error) {
-  errLog.error(`server connecting or message listening error: ${error}`)
+  errLog.error(`server connecting or message listening error: ${error}`);
 });
 
 server.on('listening', function () {
   var address = server.address();
-  logger.debug(`server listening ${address.address}:${address.port}`)
+  logger.debug(`server listening ${address.address}:${address.port}`);
 });
 
 server.bind(config.port);
