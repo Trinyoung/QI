@@ -7,7 +7,7 @@ const controller = require('./controller');
 const jsonRpc = require('node-json-rpc');
 server.on('message', async function (msg, rinfo) {
   logger.info(msg);
-  const json = msg.toString();
+  const json = msg.toString('utf-8');
   console.log(json, '+++++++++++++++++++++++++++>');
   logger.debug(`server got: ${msg} from ${rinfo.address}: ${rinfo.port}`);
   const newMsg = JSON.parse(json);
