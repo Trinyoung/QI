@@ -10,7 +10,7 @@ server.on('message', async function (msg, rinfo) {
   const json = msg.toString();
   console.log(json, '+++++++++++++++++++++++++++>');
   logger.debug(`server got: ${msg} from ${rinfo.address}: ${rinfo.port}`);
-  // const newMsg = JSON.parse(json);
+  const newMsg = JSON.parse(json);
   await controller(newMsg);
 });
 
