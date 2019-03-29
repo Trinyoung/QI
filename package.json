@@ -11,6 +11,8 @@
   "author": "Trinyoung",
   "license": "ISC",
   "dependencies": {
+    "cjson": "^0.5.0",
+    "cppmsg": "^1.1.0",
     "log4js": "^4.0.2",
     "moment": "^2.24.0",
     "mongodb": "^3.1.13",

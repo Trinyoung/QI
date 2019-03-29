@@ -3,15 +3,13 @@ const server = dgram.createSocket('udp4');
 const { errLog, logger } = require('./util/log');
 const config = require('./config');
 const controller = require('./controller');
-
-const jsonRpc = require('node-json-rpc');
+// const cppMsg = require('cppmsg');
 server.on('message', async function (msg, rinfo) {
-  logger.info(msg);
-  const json = msg.toString('utf-8');
-  console.log(json, '+++++++++++++++++++++++++++>');
-  logger.debug(`server got: ${msg} from ${rinfo.address}: ${rinfo.port}`);
-  const newMsg = JSON.parse(json);
-  await controller(newMsg);
+  var data = config.cppModel.decodeMsg(msg);
+  logger.info(JSON.stringify(data));
+  // console.log (JSON.stringify(data));
+  logger.debug(`server got: ${data.nid} from ${rinfo.address}: ${rinfo.port}`);
+  await controller(data);
 });
 
 server.on('error', function (error) {
