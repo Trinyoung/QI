@@ -18,7 +18,7 @@ const connect = function () {
         logger.info('connect mongodb successfully');
     });
     mongoose.connection.on("error", (error) => {
-        errLog.error("mongodb数据库连接失败", error);
+        errLog.error("connect mongodb failed", error);
     });
 };
 connect();
