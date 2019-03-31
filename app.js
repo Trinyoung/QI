@@ -3,11 +3,9 @@ const server = dgram.createSocket('udp4');
 const { errLog, logger } = require('./util/log');
 const config = require('./config');
 const controller = require('./controller');
-// const cppMsg = require('cppmsg');
 server.on('message', async function (msg, rinfo) {
   var data = config.cppModel.decodeMsg(msg);
   logger.info(JSON.stringify(data));
-  // console.log (JSON.stringify(data));
   logger.debug(`server got: ${data.nid} from ${rinfo.address}: ${rinfo.port}`);
   await controller(data);
 });

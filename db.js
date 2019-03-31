@@ -3,12 +3,26 @@ const config = require('./config');
 const DB_URL = config.mongo.url;
 const { logger, errLog } = require('./util/log');
 mongoose.Promise = global.Promise;
-const connection = mongoose.connect(DB_URL, { useNewUrlParser: true });
-mongoose.connection.on("connected", () => {
-    logger.info('connect mongodb successfully');
+let connectTimes = 0;
+const connect = function () {
+    connectTimes++;
+    if (connectTimes > 5) {
+        logger.error(`connect mongodb connectTimes > 5`);
+        setTimeout(() => {
+            process.exit(1);
+        }, 2000);
+        return;
+    }
+    mongoose.connect(DB_URL, { useNewUrlParser: true });
+    mongoose.connection.on("connected", () => {
+        logger.info('connect mongodb successfully');
+    });
+    mongoose.connection.on("error", (error) => {
+        errLog.error("mongodb数据库连接失败", error);
+    });
+};
+connect();
+mongoose.connection.on('disconnected', function () {
+    connect();
 });
-mongoose.connection.on("error", (error) => {
-    errLog.error("mongodb数据库连接失败", error);
-});
-
 module.exports = mongoose;
