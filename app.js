@@ -4,8 +4,10 @@ const { errLog, logger } = require('./util/log');
 const config = require('./config');
 const controller = require('./controller');
 server.on('message', async function (msg, rinfo) {
+  logger.info(msg.toString('hex'), 'msg hex represent+++++++++++++==>');
+  logger.info(msg.length,'msg length ------------------');
   var data = config.cppModel.decodeMsg(msg);
-  logger.info(JSON.stringify(data));
+  logger.info(JSON.stringify(data), 'data is here===============>');
   logger.debug(`server got: ${data.nid} from ${rinfo.address}: ${rinfo.port}`);
   await controller(data);
 });
