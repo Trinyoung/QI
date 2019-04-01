@@ -5,6 +5,7 @@ const config = require('./config');
 const controller = require('./controller');
 server.on('message', async function (msg, rinfo) {
   logger.info(msg, 'msg is ------------------');
+  console.log(JSON.stringify(msg));
   logger.info(msg.toString('hex'), 'msg hex represent+++++++++++++==>');
   var data = config.cppModel.decodeMsg(msg);
   logger.info(JSON.stringify(data), 'data is here===============>');
