@@ -2,7 +2,7 @@ const db = require('../db');
 const Schema = db.Schema;
 
 const QiSchema = new Schema({
-  node_id: { type: String, required: true, indexs: true },
+  nid: { type: String, required: true, indexs: true },
   access_type: String,
   ip_type: String,
   power_status: String,
