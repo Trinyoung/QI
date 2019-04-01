@@ -4,9 +4,13 @@ const moment = require('moment');
 class Save {
     constructor() {
     }
-    async save(data) {
+    async save(data, address, port) {
         const now = new Date();
         data = Object.assign({
+            from: {
+                host: address,
+                port: port
+            }, 
             created_at: now.getTime() / 1000,
             updated_at: now.getTime() / 1000
         }, data);

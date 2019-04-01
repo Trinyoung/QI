@@ -3,18 +3,22 @@ const Schema = db.Schema;
 
 const QiSchema = new Schema({
   nid: { type: String, required: true, indexs: true },
-  access_type: String,
-  ip_type: String,
-  power_status: String,
-  battery_status: String,
-  memory_status: String,
-  storage_status: String,
-  cpu_status: String,
-  enviroment_status: String,
-  private_ip: String,
-  up_time: Number,
-  local_time: String,
-  CRC16: String,
+  eth0: { type: String },
+  eth1: { type: String },
+  ppp: { type: String },
+  wlan: { type: String },
+  power: { type: String },
+  memory: { type: String },
+  flash: { type: String },
+  cpu: { type: String },
+  temperature: { type: String },
+  humidity: { type: String },
+  uptime: { type: Number },
+  localtime: { type: Number },
+  from: {
+    host: { type: String },
+    port: { type: String }
+  },
   created_at: Number,
   updated_at: Number
 }

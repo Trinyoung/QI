@@ -9,7 +9,7 @@ server.on('message', async function (msg, rinfo) {
   var data = config.cppModel.decodeMsg(msg);
   logger.info(JSON.stringify(data), 'data is here===============>');
   logger.debug(`server got: ${data.nid} from ${rinfo.address}: ${rinfo.port}`);
-  await controller(data);
+  await controller(data, rinfo.address, rinfo.port);
 });
 
 server.on('error', function (error) {
