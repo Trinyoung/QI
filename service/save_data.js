@@ -15,7 +15,7 @@ class Save {
             updated_at: now.getTime() / 1000
         }, data);
         const qi = new model(data);
-        if (!data.nid) {
+        if (data.nid === undefined) {
             errLog.error('cannot find node_id');
             return;
         }
