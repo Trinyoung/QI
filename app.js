@@ -26,3 +26,7 @@ server.bind(config.port);
 process.on('uncaughtException', function (err) {
   errLog.error(`uncaughtException :${err}`);
 });
+
+process.on('unhandledRejection', function(err){
+  errLog.error(`uncaughtException :${err}`);
+});
