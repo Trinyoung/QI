@@ -9,10 +9,8 @@ server.on('message', async function (msg, rinfo) {
   console.log(JSON.stringify(msg));
   const jsonMsg = JSON.stringify(msg);
   const data = JSON.parse(jsonMsg, function (key, value) {
-    console.log (value,'+++++++++++++++>key', key);
-    return value && value.type === 'Buffer' ?
-    Buffer.from(value.data) :
-    value;
+    console.log ('key:'+ key,'value:'+  value,'+++++++++++++++>key', );
+    return value && value.type === 'Buffer' ?  Buffer.from(value.data) : value;
   });
   // logger.info(msg.toString('hex'), 'msg hex represent+++++++++++++==>');
   // var data = config.cppModel.decodeMsg(msg);
