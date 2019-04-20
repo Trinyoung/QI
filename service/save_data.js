@@ -14,7 +14,7 @@ class Save extends Base {
         // }
         info.uptime = data.readUInt32LE(8, 4);
         info.localtime = data.readUInt32LE(12, 2);
-        info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4);
+        info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4).toString('hex');
         const eth = this.fillzero(data[4].toString(2));
         info.eth1 = eth.substr(0, 4);
         info.eth0 = eth.substr(4, 4);
@@ -25,8 +25,8 @@ class Save extends Base {
         const pmfc = this.fillzero(data[6].toString(2));
         info.power = pmfc.substr(6, 2);
         info.memory = pmfc.substr(4, 2);
-        info.memory = pmfc.substr(2, 2);
-        info.memory = pmfc.substr(0, 2);
+        info.flash = pmfc.substr(2, 2);
+        info.cpu = pmfc.substr(0, 2);
 
         const temperAndHum = this.fillzero(data[7].toString(2));
         info.temperature = parseInt(temperAndHum.substr(4, 4), 2) * 10 - 30;
