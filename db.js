@@ -15,6 +15,7 @@ const connect = function () {
     }
     mongoose.connect(DB_URL, { useNewUrlParser: true });
     mongoose.connection.on("connected", () => {
+        // TODO: 如果连接成功，是否要重置 connectTimes = 0
         logger.info('connect mongodb successfully');
     });
     mongoose.connection.on("error", (error) => {
