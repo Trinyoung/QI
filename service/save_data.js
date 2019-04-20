@@ -37,9 +37,10 @@ class Save extends Base {
                 host: address,
                 port: port
             },
-            created_at: now.getTime() / 1000,
-            updated_at: now.getTime() / 1000
+            created_at: Math.floor(now.getTime() / 1000),
+            updated_at: Math.floor(now.getTime() / 1000)
         }, info);
+        logger.debug(`get info:${JSON.stringify(info)}`);
         const qi = new model(info);
         if (info.nid === undefined) {
             errLog.error('cannot find node_id');
