@@ -3,6 +3,7 @@ const config = require('./config');
 const DB_URL = config.mongo.url;
 const { logger, errLog } = require('./util/log');
 mongoose.Promise = global.Promise;
+console.log(DB_URL);
 let connectTimes = 0;
 const connect = function () {
     connectTimes++;
