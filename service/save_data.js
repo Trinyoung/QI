@@ -9,11 +9,12 @@ class Save extends Base {
     }
     async save(data, address, port) {
         let info = {};
-        if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), data.slice(14, 15).toString('hex'))) {
+        if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), (~(data.slice(14))^0xBEEF).toString('hex'))) {
             return;
         }
+        // confirmcrc16( ..... , XOR ( BitWise ( data.slice(14,15) ), 0xBEEF ).toString )
         info.uptime = data.readUInt32LE(8, 4);
-        info.localtime = data.readUInt32LE(12, 2);
+        info.localtime = data.readUInt16LE(12, 2);
         info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4).toString('hex');
         const eth = this.fillzero(data[4].toString(2));
         info.eth1 = eth.substr(0, 4);
