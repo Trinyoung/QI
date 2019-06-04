@@ -9,9 +9,11 @@ class Base {
     }
     return num;
   }
- 
-  confirmcrc16(data, result){
-    if (crc16(data, 'hex') === result){
+
+  confirmcrc16(data, result) {
+    result = Math.pow(2, 16) - 1 - result;
+    result = result ^ 0xBEEF;
+    if (crc16(data, 'hex') === result) {
       return true
     }
     return false;

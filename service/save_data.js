@@ -9,9 +9,9 @@ class Save extends Base {
     }
     async save(data, address, port) {
         let info = {};
-        // if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), data.slice(14, 15).toString)) {
-        //     return;
-        // }
+        if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), data.readUInt16LE(14,2))) {
+            return;
+        }
         info.uptime = data.readUInt32LE(8, 4);
         info.localtime = data.readUInt32LE(12, 2);
         info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4).toString('hex');
