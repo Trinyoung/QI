@@ -13,7 +13,7 @@ class Save extends Base {
             return;
         }
         info.uptime = data.readUInt32LE(8, 4);
-        info.localtime = data.readUInt32LE(12, 2);
+        info.localtime = data.readUInt16LE(12, 2);
         info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4).toString('hex');
         const eth = this.fillzero(data[4].toString(2));
         info.eth1 = eth.substr(0, 4);

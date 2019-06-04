@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev_win": "set NODE_ENV=prod&& node ./app.js",
     "prod": "NODE_ENV=prod node ./app.js",
     "dev": "nodemon ./app.js"
   },

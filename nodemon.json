@@ -12,7 +12,7 @@
 
   ],
   "env": {
-      "NODE_ENV": "prod"
+      "NODE_ENV": "dev"
   },
   "ext": "js json"
 }
