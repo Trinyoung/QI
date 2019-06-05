@@ -9,18 +9,18 @@ class Save extends Base {
     }
     async save(data, address, port) {
         let info = {};
-        if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), data.readUInt16LE(14,2))) {
+        if (!this.confirmcrc16(data.slice(0, 14).toString('hex'), data.readUInt16LE(14, 2))) {
             return;
         }
         info.uptime = data.readUInt32LE(8, 4);
         info.localtime = data.readUInt16LE(12, 2);
-        info.nid = data.slice(0, 2).toString('hex') + '-' + data.slice(2, 4).toString('hex');
+        info.nid = data.slice(2, 4).reverse().toString('hex') + '-' + data.slice(0, 2).reverse().toString('hex');
         const eth = this.fillzero(data[4].toString(2));
         info.eth1 = eth.substr(0, 4);
         info.eth0 = eth.substr(4, 4);
         const wandp = this.fillzero(data[5].toString(2));
-        info.ppp = wandp.substr(0, 4);
-        info.wlan = wandp.substr(4, 4);
+        info.wlan = wandp.substr(0, 4);
+        info.ppp = wandp.substr(4, 4);
 
         const pmfc = this.fillzero(data[6].toString(2));
         info.power = pmfc.substr(6, 2);
