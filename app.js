@@ -4,7 +4,7 @@ const { errLog, logger } = require('./util/log');
 const config = require('./config');
 const controller = require('./controller');
 server.on('message', async function (msg, rinfo) {
-  logger.debug(`server got: ${msg} from ${rinfo.address}: ${rinfo.port}`);
+  logger.debug(`server got: ${JSON.stringify(msg)} from ${rinfo.address}: ${rinfo.port}`);
   await controller(msg, rinfo.address, rinfo.port);
 });
 

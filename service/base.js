@@ -1,5 +1,5 @@
 const crc16 = require('crc16');
-const { logger } = require('./util/log');
+const { logger } = require('../util/log');
 class Base {
   fillzero(num) {
     const length = num.length
