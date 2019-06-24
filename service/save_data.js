@@ -1,8 +1,7 @@
+const moment = require('moment');
 const model = require('../model/qi');
 const { logger, errLog } = require('../util/log');
-const moment = require('moment');
 const Base = require('./base');
-const crc16 = require('crc16');
 class Save extends Base {
     constructor() {
         super();
@@ -21,7 +20,6 @@ class Save extends Base {
         const wandp = this.fillzero(data[5].toString(2));
         info.wlan = wandp.substr(0, 4);
         info.ppp = wandp.substr(4, 4);
-
         const pmfc = this.fillzero(data[6].toString(2));
         info.power = pmfc.substr(6, 2);
         info.memory = pmfc.substr(4, 2);
@@ -31,14 +29,12 @@ class Save extends Base {
         const temperAndHum = this.fillzero(data[7].toString(2));
         info.temperature = parseInt(temperAndHum.substr(4, 4), 2) * 10 - 30;
         info.humidity = parseInt(temperAndHum.substr(0, 4), 2) * 6 + 10;
-        const now = new Date();
         info = Object.assign({
             from: {
                 host: address,
-                port: port
+                port
             },
-            created_at: Math.floor(now.getTime() / 1000),
-            updated_at: Math.floor(now.getTime() / 1000)
+            created_at: moment.utc().format()
         }, info);
         logger.debug(`get info:${JSON.stringify(info)}`);
         const qi = new model(info);
@@ -48,7 +44,7 @@ class Save extends Base {
         }
         try {
             const result = await qi.save();
-            logger.debug('insert data successfully!');
+            logger.debug(`insert data :${result}successfully!`);
             return result;
         } catch (e) {
             errLog.error(`insert data error: ${e}`);

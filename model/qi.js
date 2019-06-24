@@ -19,8 +19,7 @@ const QiSchema = new Schema({
     host: { type: String },
     port: { type: String }
   },
-  created_at: Number,
-  updated_at: Number
+  created_at: Date
 }
 );
 const Qi = db.model('Qi', QiSchema);
