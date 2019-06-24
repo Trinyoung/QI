@@ -34,7 +34,7 @@ class Save extends Base {
                 host: address,
                 port
             },
-            created_at: moment.utc().format()
+            created_at: Math.round(Date.now() / 1000)
         }, info);
         logger.debug(`get info:${JSON.stringify(info)}`);
         const qi = new model(info);
